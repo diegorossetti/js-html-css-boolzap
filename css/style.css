@@ -1,0 +1,356 @@
+/* reset rules */
+    h2, p, ul {
+
+        /* to overwrite bootstrap's CSS */
+        margin-bottom: 0;
+    }
+
+    ul {
+
+        /* to overwrite bootstrap's CSS */
+        padding-left: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+/* /reset rules */
+
+/* rules used or usable in different parts of the page */
+    a {
+        transition: color .15s linear;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    a svg {
+        transition: background-color .15s linear;
+    }
+
+    a svg path {
+        transition: fill .15s linear;
+    }
+
+    .profile-photo {
+        width: auto;
+        height: 100%;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    /* templates */
+        .templates {
+            display: none;
+        }
+
+        .msg-sent {
+            display: flex;
+            flex-shrink: 0;
+            height: 33px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            align-items: center;
+        }
+
+        .msg-sent-by-user {
+            align-self: flex-end;
+            margin-right: 9%;
+            background-color: #dcf8c6;
+        }
+
+        .msg-sent-by-computer {
+            align-self: flex-start;
+            margin-left: 9%;
+            background-color: white;
+        }
+
+        .msg-sent > .time {
+            margin-left: 30px;
+        }
+    /* /templates */
+
+/* /rules used or usable in different parts of the page */
+
+/* rules used in specific parts of the page */
+    html {
+
+        /* to make a reference for the percentage heights of thix box's children */
+        height: 100%;
+
+        font-size: 14px;
+    }
+
+    body {
+        min-width: 650px;
+        min-height: 500px;
+
+        /* to make a reference for the percentage heights of thix box's children */
+        height: 100%;
+
+        font-family: 'Ubuntu', sans-serif;
+        color: #464b3d;
+        margin: 0;
+    }
+
+    .left-col {
+        float: left;
+        display: flex;
+        flex-direction: column;
+        width: 35%;
+        height: 100%;
+    }
+
+    .left-col > header > nav {
+        display: flex;
+        height: 40px;
+        padding: 11px 15px 8px 17px;
+        background-color: #eeeeee;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .left-col > header > nav > .icons-container > [src*="icon"] {
+        margin-left: 20px;
+        cursor: pointer;
+    }
+
+    .left-col > header > .get-notified-box {
+        display: flex;
+        min-height: 59px;
+        padding: 15px;
+        background-color: #9de1fe;
+        cursor: pointer;
+        align-items: center;
+    }
+
+    .left-col > header > .get-notified-box > .notifications-off-icon {
+        flex-shrink: 0;
+    }
+
+    .left-col > header > .get-notified-box > .msg-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+    }
+
+    .left-col > header > .get-notified-box > .msg-container > span:first-child {
+        font-size: 16px;
+        line-height: 21px;
+    }
+
+    .left-col > header > .get-notified-box:hover > .msg-container > span:last-child {
+        text-decoration: underline;
+    }
+
+    .left-col > header > .get-notified-box > .msg-container > span:last-child > .right-arrow-icon {
+        padding-left: 5px;
+    }
+
+    .left-col > header > .search-bar-container {
+        height: 35px;
+        padding: 7px 15px;
+        background-color: #f8f8f8;
+    }
+
+    .left-col > header > .search-bar-container > .search-bar {
+        display: flex;
+        height: 100%;
+        border-radius: 30px;
+        padding: 0 15px;
+        background-color: white;
+        align-items: center;
+    }
+
+    .left-col > header > .search-bar-container > .search-bar > .magnifying-glass-icon {
+        flex-shrink: 0;
+    }
+
+    .left-col > header > .search-bar-container > .search-bar > input {
+        /* to overwrite bootstrap's CSS */
+        width: 100%;
+
+        margin-left: 24px;
+
+        /* to overwrite bootstrap's CSS */
+        border: none;
+
+        color: #464b3d;
+    }
+
+    .left-col > main {
+        overflow-y: auto;
+        scrollbar-color: rgba(0,0,0,.2) hsla(0,0%,100%,.1);
+        scrollbar-width: thin;
+    }
+
+    .left-col > main > .chat-info-box {
+        display: flex;
+        height: 49px;
+        border-top: 1px solid #efefef;
+        border-bottom: 1px solid #efefef;
+        padding: 11px 15px;
+        align-items: center;
+    }
+
+    .left-col > main > .chat-info-box:hover {
+        background-color: rgb(244, 245, 245);
+        cursor: pointer;
+    }
+
+    .left-col > main > .chat-info-box > .profile-photo {
+        margin-right: 15px;
+    }
+
+    .left-col > main > .chat-info-box > .container {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .left-col > main > .chat-info-box > .container > .name-and-day-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .left-col > main > .chat-info-box > .container > .name-and-day-container > .contact-name {
+        font-size: 17px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .left-col > main > .chat-info-box > .container > .name-and-day-container > .day-or-time-of-last-msg {
+
+        /* to create space between the name and the day or time of the last message (otherwise the two would be too close if the name is long and the viewport's width is low enough)  */
+        margin-left: 10px;
+        font-size: 13px;
+        color: rgba(0, 0, 0, .4);
+    }
+
+    .left-col > main > .chat-info-box > .container > .contact-last-msg {
+        color: rgba(0, 0, 0, .6);
+    }
+
+    .right-col {
+        float: left;
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+        height: 100%;
+    }
+
+    .right-col > header > nav {
+        display: flex;
+        height: 60px;
+        border-left: 1px solid #e3e3e3;
+        padding: 8px 15px;
+        background-color: #eeeeee;
+        align-items: center;
+    }
+
+    .right-col > header > nav > .profile-photo {
+        margin-right: 15px;
+        font-size: 17px;
+    }
+
+    .right-col > header > nav > .name-and-last-seen-container {
+        flex-grow: 1;
+    }
+
+    .right-col > header > nav > .name-and-last-seen-container > .contact-name {
+        font-size: 17px;
+    }
+
+    .right-col > header > nav > .name-and-last-seen-container > .last-seen {
+        color: rgba(0, 0, 0, .6);
+    }
+
+    .right-col > header > nav > .icons-container > [src*="icon"] {
+        margin-left: 20px;
+        cursor: pointer;
+    }
+
+    .right-col > .chat-window {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        background: url("../img/chat-window-background.png");
+        overflow-y: auto;
+        background-size: cover;
+    }
+
+    .right-col > .input-bar {
+        display: flex;
+        height: 62px;
+        border-left: 1px solid #e3e3e3;
+        padding: 10px 23px;
+        background-color: #eeeeee;
+        align-items: center;
+    }
+
+    .right-col > .input-bar > .emojis-menu-icon,
+    .right-col > .input-bar > .microphone-icon {
+        cursor: pointer;
+    }
+
+    .right-col > .input-bar > .input-field {
+        flex-grow: 1;
+        margin: 0px 20px;
+        width: 50px;
+
+        /* to overwrite bootstrap's CSS */
+        border: none;
+
+        border-radius: 30px;
+        padding: 10px 15px;
+        color: #7e7d7d;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .right-col > .input-bar > .send-icon {
+        display: none;
+    }
+/* /rules used in specific parts of the page */
+
+/* rules for specific width ranges */
+    @media screen and (max-width: 575.98px) {
+
+        /* rules used in specific parts of the page */
+        /* /rules used in specific parts of the page */
+
+    }
+
+    @media screen and (max-width: 767.98px) {
+
+        /* rules used in specific parts of the page */
+        /* /rules used in specific parts of the page */
+
+    }
+
+    @media screen and (max-width: 991.98px) {
+
+        /* rules used in specific parts of the page */
+        /* /rules used in specific parts of the page */
+
+    }
+
+    @media screen and (max-width: 1199.98px) {
+
+        /* rules used in specific parts of the page */
+        /* /rules used in specific parts of the page */
+
+    }
+
+    @media screen and (min-width: 1200px) {
+
+        /* rules used in specific parts of the page */
+        /* /rules used in specific parts of the page */
+
+    }
+    
+/* /rules for specific width ranges */
