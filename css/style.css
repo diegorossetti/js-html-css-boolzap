@@ -1,82 +1,118 @@
-/* reset rules */
-    h2, p, ul {
-
-        /* to overwrite bootstrap's CSS */
-        margin-bottom: 0;
-    }
-
-    ul {
-
-        /* to overwrite bootstrap's CSS */
-        padding-left: 0;
-    }
-
-    li {
-        list-style: none;
-    }
-/* /reset rules */
-
 /* rules used or usable in different parts of the page */
-    a {
-        transition: color .15s linear;
-    }
-
-    a:hover {
-        text-decoration: none;
-    }
-
-    a svg {
-        transition: background-color .15s linear;
-    }
-
-    a svg path {
-        transition: fill .15s linear;
-    }
-
     .profile-photo {
         width: auto;
         height: 100%;
         border-radius: 50%;
         cursor: pointer;
     }
-
-    /* templates */
-        .templates {
-            display: none;
-        }
-
-        .msg-sent {
-            display: flex;
-            flex-shrink: 0;
-            height: 33px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            padding: 5px 10px;
-            border-radius: 15px;
-            align-items: center;
-        }
-
-        .msg-sent-by-user {
-            align-self: flex-end;
-            margin-right: 9%;
-            background-color: #dcf8c6;
-        }
-
-        .msg-sent-by-computer {
-            align-self: flex-start;
-            margin-left: 9%;
-            background-color: white;
-        }
-
-        .msg-sent > .time {
-            margin-left: 30px;
-        }
-    /* /templates */
-
 /* /rules used or usable in different parts of the page */
+
+/* templates */
+    #templates {
+        display: none;
+    }
+
+    .msg-box {
+        position: relative;
+        display: flex;
+
+        /* to avoid shrinking of the message boxes that contain a multiple line message when the
+        message boxes have overflowed the chat window */
+        flex-shrink: 0;
+
+        /* min-height instead of height so that this box can grow with the text inside of it */
+        min-height: 33px;
+        margin: 5px 9%;
+        padding: 5px 10px;
+        border-radius: 15px;
+        align-items: center;
+    }
+
+    .msg-box .text {
+
+        /* to avoid the overflow of long words */
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .msg-box:first-child {
+        margin-top: 10px;
+    }
+
+    .msg-box:last-child {
+        margin-bottom: 10px;
+    }
+
+    .msg-box.by-user {
+        align-self: flex-end;
+        background-color: #dcf8c6;
+    }
+
+    .msg-box.by-computer {
+        align-self: flex-start;
+        background-color: white;
+    }
+
+    .msg-box > .time {
+        align-self: flex-end;
+        margin-left: 10px;
+        font-size: 11px;
+    }
+
+    .msg-box > .my_dropdown > .my_dropdown-toggle {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: none;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .msg-box > .my_dropdown > .my_dropdown-toggle.by-user {
+        background-color: #dcf8c6;
+    }
+
+    .msg-box>.my_dropdown>.my_dropdown-toggle.by-computer {
+        background-color: white;
+    }
+
+    .msg-box:hover > .my_dropdown > .my_dropdown-toggle {
+        display: block;
+    }
+
+    .msg-box > .my_dropdown > .my_dropdown-menu {
+        position: absolute;
+        top: 28px;
+        display: none;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.26),0 2px 10px 0 rgba(0,0,0,.16);
+        color: #444;
+        white-space: nowrap;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .msg-box > .my_dropdown > .my_dropdown-menu .delete {
+        display: inline-block;
+        padding: 15px;
+    }
+
+    /* to position the dropdown menu so that it doesn't get cut off at lower viewport widths */
+    .msg-box.by-user > .my_dropdown > .my_dropdown-menu.to-the-left {
+        right: 5px;
+    }
+
+    /* to position the dropdown menu so that it doesn't get cut off at lower viewport widths */
+    .msg-box.by-computer > .my_dropdown > .my_dropdown-menu.to-the-right {
+        left: 74%;
+    }
+/* /templates */
 
 /* rules used in specific parts of the page */
     html {
+        min-width: 650px;
+        min-height: 500px;
 
         /* to make a reference for the percentage heights of thix box's children */
         height: 100%;
@@ -85,15 +121,14 @@
     }
 
     body {
-        min-width: 650px;
-        min-height: 500px;
 
         /* to make a reference for the percentage heights of thix box's children */
         height: 100%;
 
         font-family: 'Ubuntu', sans-serif;
         color: #464b3d;
-        margin: 0;
+        margin:0;
+        overflow: hidden;
     }
 
     .left-col {
@@ -170,6 +205,7 @@
     }
 
     .left-col > header > .search-bar-container > .search-bar > input {
+
         /* to overwrite bootstrap's CSS */
         width: 100%;
 
@@ -196,9 +232,16 @@
         align-items: center;
     }
 
+    .left-col > main > .chat-info-box.clicked {
+        background-color: #e9ebeb;
+    }
+
     .left-col > main > .chat-info-box:hover {
-        background-color: rgb(244, 245, 245);
         cursor: pointer;
+    }
+
+    .left-col > main > .chat-info-box:not(.clicked):hover {
+        background-color: rgb(244, 245, 245);
     }
 
     .left-col > main > .chat-info-box > .profile-photo {
@@ -206,6 +249,7 @@
     }
 
     .left-col > main > .chat-info-box > .container {
+        flex-grow: 1;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -218,12 +262,13 @@
     }
 
     .left-col > main > .chat-info-box > .container > .name-and-day-container > .contact-name {
+        flex-grow: 1;
         font-size: 17px;
         text-overflow: ellipsis;
         overflow: hidden;
     }
 
-    .left-col > main > .chat-info-box > .container > .name-and-day-container > .day-or-time-of-last-msg {
+    .left-col > main > .chat-info-box > .container > .name-and-day-container > .time-of-last-msg {
 
         /* to create space between the name and the day or time of the last message (otherwise the two would be too close if the name is long and the viewport's width is low enough)  */
         margin-left: 10px;
@@ -241,15 +286,16 @@
         flex-direction: column;
         width: 65%;
         height: 100%;
+        border-left: 1px solid #e3e3e3;
     }
 
     .right-col > header > nav {
         display: flex;
-        height: 60px;
-        border-left: 1px solid #e3e3e3;
-        padding: 8px 15px;
+        height: 43px;
+        padding: 8px 8px;
         background-color: #eeeeee;
         align-items: center;
+        width: 100%;
     }
 
     .right-col > header > nav > .profile-photo {
@@ -274,22 +320,43 @@
         cursor: pointer;
     }
 
-    .right-col > .chat-window {
+    .right-col > .chat-windows-container {
+        display: flex;
+        flex-grow: 1;
+        overflow-y: auto;
+        width: 102%;
+        scrollbar-color: rgba(0,0,0,.2);
+        scrollbar-width: thin;
+    }
+
+    .right-col > .chat-windows-container > .chat-window {
+        display: none;
+        background: linear-gradient(rgba(229,221,213,.95), rgba(229,221,213,.95)), url("../img/chat-window-background.png");
+        overflow-y: auto;
+    }
+
+    .right-col > .chat-windows-container > .chat-window.opened {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        background: url("../img/chat-window-background.png");
-        overflow-y: auto;
-        background-size: cover;
+    }
+
+    /* workaround to make visible the bottom margin of the last message of the window chat (the last
+    child's bottom margin or padding is ignored when the parent has the overflow property: the
+    overflow property applies only to content (it doesn't apply to paddings or margins) */
+    .right-col > .chat-windows-container > .chat-window::after {
+        content: "";
+        flex-basis: 1px;
+        flex-shrink: 0;
     }
 
     .right-col > .input-bar {
         display: flex;
-        height: 62px;
-        border-left: 1px solid #e3e3e3;
+        height: 42px;
         padding: 10px 23px;
         background-color: #eeeeee;
         align-items: center;
+        width: 96%;
     }
 
     .right-col > .input-bar > .emojis-menu-icon,
@@ -314,43 +381,46 @@
 
     .right-col > .input-bar > .send-icon {
         display: none;
+        cursor: pointer;
     }
 /* /rules used in specific parts of the page */
 
 /* rules for specific width ranges */
-    @media screen and (max-width: 575.98px) {
+    @media screen and (min-width: 901px) {
 
         /* rules used in specific parts of the page */
+        .left-col {
+            width: 35%;
+        }
+
+        .right-col {
+            width: 64%;
+        }
         /* /rules used in specific parts of the page */
 
     }
 
-    @media screen and (max-width: 767.98px) {
+    @media screen and (min-width: 1441px) {
 
         /* rules used in specific parts of the page */
+        html {
+            background-image: linear-gradient(to bottom, #009688 0px, #009688 15vh, #dddbd1 15vh, #d2dbdc 100%);
+        }
+
+        body {
+            width: 90%;
+            height: calc(100% - 20px - 20px);
+            margin: 0;
+        }
+
+        .left-col {
+            width: 35%;
+        }
+
+        .right-col {
+            width: 65%;
+        }
         /* /rules used in specific parts of the page */
 
     }
-
-    @media screen and (max-width: 991.98px) {
-
-        /* rules used in specific parts of the page */
-        /* /rules used in specific parts of the page */
-
-    }
-
-    @media screen and (max-width: 1199.98px) {
-
-        /* rules used in specific parts of the page */
-        /* /rules used in specific parts of the page */
-
-    }
-
-    @media screen and (min-width: 1200px) {
-
-        /* rules used in specific parts of the page */
-        /* /rules used in specific parts of the page */
-
-    }
-    
 /* /rules for specific width ranges */
