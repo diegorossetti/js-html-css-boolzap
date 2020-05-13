@@ -46,11 +46,13 @@
     .msg-box.by-user {
         align-self: flex-end;
         background-color: #dcf8c6;
+        max-width: 500px;
     }
 
     .msg-box.by-computer {
         align-self: flex-start;
         background-color: white;
+        max-width: 500px;
     }
 
     .msg-box > .time {
